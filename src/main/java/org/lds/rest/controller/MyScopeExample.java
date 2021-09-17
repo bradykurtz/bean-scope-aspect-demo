@@ -46,24 +46,24 @@ public class MyScopeExample {
     }
 
     @RequestMapping(value = "/request", method = RequestMethod.GET)
-    public ScopeExample getRequestScopeValue() throws JsonProcessingException {
+    public Integer getRequestScopeValue() throws JsonProcessingException {
 
         ScopeExample example =  applicationContext.getBean("requestScope", ScopeExample.class);
 //        ObjectMapper mapper = applicationContext.getBean("objectMapper", ObjectMapper.class);
 //        String exampleString = mapper.writerFor(ScopeExample.class).writeValueAsString(example);
 //        return mapper.readValue(exampleString, ScopeExample.class);
-        return  example;
+        return  example.getCurrentValue();
     }
 
     @RequestMapping(value = "/request", method = RequestMethod.POST)
-    @LogMe
-    public ScopeExample addRequestScopeValue(Integer addValue){
+//    @LogMe
+    public Integer addRequestScopeValue(Integer addValue){
         ScopeExample requestScope = applicationContext.getBean("requestScope", ScopeExample.class);
         requestScope.addValue(addValue);
 //        ScopeExample responseExample = new ScopeExample();
 //        responseExample.setCurrentValue(requestScope.getCurrentValue());
 //        return responseExample;
-        return requestScope;
+        return requestScope.getCurrentValue();
     }
 
 
